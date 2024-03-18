@@ -57,6 +57,9 @@ class ViViT(nn.Module):
         )
 
     def forward(self, x):
+        # print(x.shape)
+        x = x.permute(0, 2, 1, 3, 4)
+        # print(self.to_patch_embedding.device)
         x = self.to_patch_embedding(x)
         b, t, n, _ = x.shape
 
