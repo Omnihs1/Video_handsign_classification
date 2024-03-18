@@ -44,12 +44,12 @@ class ViVitTrainer():
             print('LOSS train {} valid {}'.format(avg_loss, running_vloss))
             print('ACC valid {}'.format(acc))
             # Sample list of numbers
-            train_loss.append(avg_loss.cpu())
-            test_loss.append(running_vloss.cpu())
+            train_loss.append(avg_loss)
+            test_loss.append(running_vloss)
         # print(f"Loss {running_vloss}")
         # Convert the list to a NumPy array
-        train_loss = np.array(train_loss)
-        test_loss = np.array(test_loss)
+        train_loss = np.array(train_loss.detach().cpu())
+        test_loss = np.array(test_loss.detach().cpu())
         # Save the array to a .npy file
         np.save('train_loss.npy', train_loss)
         np.save('test_loss.npy', test_loss)
